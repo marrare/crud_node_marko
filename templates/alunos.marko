@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h1>Alunos</h1>
+    <button>Novo </button>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Curso</th>
+            <th>Opções</th>
+        </thead>
+        <tbody>
+            <for|aluno, index| of=data>
+                <tr>
+                    <td>${aluno.id}</td>
+                    <td>${aluno.nome}</td>
+                    <td>${aluno.curso}</td>
+                    <td>
+                        <a href="#">EDITAR</a> | <a href="#">DELETAR</a>
+                    </td>
+                </tr>
+            </for>
+        </tbody>
+    </table>
+    
+</body>
+</html>

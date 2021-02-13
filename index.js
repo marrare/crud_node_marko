@@ -1,11 +1,23 @@
+require('marko/node-require');
+let markoExpress = require("marko/express");
 const express = require('express');
-const app = express()
-const port = 3000;
+
+const app = express();
+app.use(markoExpress());
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    var alunos = [
+        { id: 1, nome: 'Josino', curso: 'ADS' },
+        { id: 1, nome: 'Josino', curso: 'ADS' },
+        { id: 1, nome: 'Josino', curso: 'ADS' }
+    ]
+    res.marko(require('./templates/alunos.marko'), alunos);
 })
 
-app.listen(port, '0.0.0.0',() => {
+app.get('/form', (req, res) => {
+    res.marko(require('./templates/form.marko'));
+})
+
+app.listen(3000, '0.0.0.0',() => {
     console.log('Servidor Iniciado ...');
 })
