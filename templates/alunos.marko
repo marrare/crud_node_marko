@@ -5,32 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Alunos</h1>
-    <a href="/form">Novo</a>
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Curso</th>
-            <th>Opções</th>
-        </thead>
-        <tbody>
-            <for|aluno, index| of=data>
-                <tr>
-                    <td>${aluno.id}</td>
-                    <td>${aluno.nome}</td>
-                    <td>${aluno.curso}</td>
-                    <td>
-                        <a href="/form/${aluno.id}">EDITAR</a>
-                         | 
-                        <a href="/alunos/delete/${aluno.id}">DELETAR</a>
-                    </td>
-                </tr>
-            </for>
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Alunos</h1>
+        <a class="btn-floating btn-large waves-effect waves-light red" href="/form"><i class="material-icons">add</i></a>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>Opções</th>
+            </thead>
+            <tbody>
+                <for|aluno, index| of=data>
+                    <tr>
+                        <td>${aluno.id}</td>
+                        <td>${aluno.nome}</td>
+                        <td>${aluno.curso}</td>
+                        <td>
+                            <a style="margin-right: 10pt;" class="btn-floating btn-small waves-effect waves-light red" href="/form/${data.id}"><i class="material-icons">edit</i></a>
+                            <a class="btn-floating btn-small waves-effect waves-light red" href="/alunos/delete/${aluno.id}"><i class="material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                </for>
+            </tbody>
+        </table>
+    </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
