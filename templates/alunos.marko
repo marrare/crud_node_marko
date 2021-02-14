@@ -40,7 +40,12 @@
 
     <for|message , index| of=data.error_messages>
         <script>
-            M.toast({html: '${message}'})
+            M.toast({html: '${message}', classes: 'red lighten-2'})
+        </script>
+    </for>
+    <for|message , index| of=data.success_messages>
+        <script>
+            M.toast({html: '${message}', classes: 'teal accent-4'})
         </script>
     </for>
 </body>

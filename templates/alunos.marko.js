@@ -41,7 +41,13 @@ function render(input, out, __component, component, state) {
 
   marko_forOf(data.error_messages, function(message, index) {
     out.w("<script>" +
-      marko_escapeScript(("\n            M.toast({html: '" + message) + "'})\n        ") +
+      marko_escapeScript(("\n            M.toast({html: '" + message) + "', classes: 'red lighten-2'})\n        ") +
+      "</script>");
+  });
+
+  marko_forOf(data.success_messages, function(message, index) {
+    out.w("<script>" +
+      marko_escapeScript(("\n            M.toast({html: '" + message) + "', classes: 'teal accent-4'})\n        ") +
       "</script>");
   });
 

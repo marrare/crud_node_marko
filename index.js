@@ -57,6 +57,8 @@ app.post('/alunos', (req,res) => {
     const aluno = req.body;
     if(aluno.id) alunoDAO.update(aluno);
     else alunoDAO.save(aluno);
+
+    req.flash('success', 'Aluno salvo com sucesso');
     
     res.redirect("/");
 })
