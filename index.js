@@ -1,22 +1,40 @@
+const express = require('express');
+const app = express();
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded());
+
 require('marko/node-require');
 let markoExpress = require("marko/express");
-const express = require('express');
+app.use(markoExpress());
 
 const AlunoDao = require('./dao/aluno-dao');
 const alunoDAO = new AlunoDao();
 
-const bodyParser = require('body-parser');
-
-const app = express();
-app.use(markoExpress());
-app.use(bodyParser.urlencoded());
+const session = require('express-session');
+const flash = require('connect-flash');
+app.use(session({
+    secret: 'geeksforgeeks',
+    saveUninitialized: true,
+    resave: true
+}))
+app.use(flash());
 
 app.get('/', (req, res) => {
+
+    let response = {
+        error_messages: req.flash('error'),
+        success_messages: req.flash('success'),
+        results: []
+    }
+
     alunoDAO.list().then((alunos) => {
-        res.marko(require('./templates/alunos.marko'), alunos);
+        response.results = alunos;
+        res.marko(require('./templates/alunos.marko'), response);
     }).catch(err => {
         console.log(err);
-        res.status(500).json("Internal Error")
+        response.error_messages.push("Aconteceu algum erro");
+        res.marko(require('./templates/alunos.marko'), response);
     })
     
 })

@@ -21,7 +21,7 @@
                 <th>Opções</th>
             </thead>
             <tbody>
-                <for|aluno, index| of=data>
+                <for|aluno, index| of=data.results>
                     <tr>
                         <td>${aluno.id}</td>
                         <td>${aluno.nome}</td>
@@ -37,5 +37,11 @@
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <for|message , index| of=data.error_messages>
+        <script>
+            M.toast({html: '${message}'})
+        </script>
+    </for>
 </body>
 </html>

@@ -8,6 +8,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     helpers_escape_xml = require("marko/src/runtime/html/helpers/escape-xml"),
     marko_escapeXml = helpers_escape_xml.x,
     marko_attr = require("marko/src/runtime/html/helpers/attr"),
+    marko_escapeScript = require("marko/src/runtime/html/helpers/escape-script-placeholder"),
     marko_loadTag = require("marko/src/runtime/helpers/load-tag"),
     init_components_tag = marko_loadTag(require("marko/src/core-tags/components/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/core-tags/core/await/reorderer-renderer")),
@@ -20,7 +21,7 @@ function render(input, out, __component, component, state) {
 
   var $for$0 = 0;
 
-  marko_forOf(data, function(aluno, index) {
+  marko_forOf(data.results, function(aluno, index) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
     out.w("<tr><td>" +
@@ -37,6 +38,12 @@ function render(input, out, __component, component, state) {
   });
 
   out.w("</tbody></table></div><script src=https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js></script>");
+
+  marko_forOf(data.error_messages, function(message, index) {
+    out.w("<script>" +
+      marko_escapeScript(("\n            M.toast({html: '" + message) + "'})\n        ") +
+      "</script>");
+  });
 
   init_components_tag({}, out);
 
