@@ -7,6 +7,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_forOf = require("marko/src/runtime/helpers/for-of"),
     helpers_escape_xml = require("marko/src/runtime/html/helpers/escape-xml"),
     marko_escapeXml = helpers_escape_xml.x,
+    marko_attr = require("marko/src/runtime/html/helpers/attr"),
     marko_loadTag = require("marko/src/runtime/helpers/load-tag"),
     init_components_tag = marko_loadTag(require("marko/src/core-tags/components/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/core-tags/core/await/reorderer-renderer")),
@@ -28,7 +29,9 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(aluno.nome) +
       "</td><td>" +
       marko_escapeXml(aluno.curso) +
-      "</td><td><a href=#>EDITAR</a> | <a href=#>DELETAR</a></td></tr>");
+      "</td><td><a href=#>EDITAR</a> | <a" +
+      marko_attr("href", "/alunos/delete/" + (aluno.id == null ? "" : aluno.id)) +
+      ">DELETAR</a></td></tr>");
   });
 
   out.w("</tbody></table>");
