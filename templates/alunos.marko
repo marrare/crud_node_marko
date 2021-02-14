@@ -7,30 +7,31 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <h1>Alunos</h1>
-    <a href="/form">Novo</a>
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Curso</th>
-            <th>Opções</th>
-        </thead>
-        <tbody>
-            <for|aluno, index| of=data>
-                <tr>
-                    <td>${aluno.id}</td>
-                    <td>${aluno.nome}</td>
-                    <td>${aluno.curso}</td>
-                    <td>
-                        <a href="/form/${aluno.id}">EDITAR</a>
-                         | 
-                        <a href="/alunos/delete/${aluno.id}">DELETAR</a>
-                    </td>
-                </tr>
-            </for>
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Alunos</h1>
+        <a class="btn btn-primary" href="/form">Novo</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>Opções</th>
+            </thead>
+            <tbody>
+                <for|aluno, index| of=data>
+                    <tr>
+                        <td>${aluno.id}</td>
+                        <td>${aluno.nome}</td>
+                        <td>${aluno.curso}</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/form/${aluno.id}">EDITAR</a>
+                            <a class="btn btn-danger" href="/alunos/delete/${aluno.id}">DELETAR</a>
+                        </td>
+                    </tr>
+                </for>
+            </tbody>
+        </table>
+    </div>
     
 </body>
 </html>

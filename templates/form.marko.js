@@ -13,13 +13,13 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title></head><body><h1>Cadastro</h1><br><form action=/alunos method=post><input type=hidden name=id" +
+  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css integrity=sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm crossorigin=anonymous><script src=https://code.jquery.com/jquery-3.2.1.slim.min.js integrity=sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js integrity=sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl crossorigin=anonymous></script></head><body><div class=container><h1>Cadastro</h1><br><form action=/alunos method=post><div class=form-group><input type=hidden name=id" +
     marko_attr("value", data.id) +
-    "><input type=text name=nome placeholder=nome" +
+    "></div><div class=form-group><input type=text name=nome placeholder=nome" +
     marko_attr("value", data.nome) +
-    "><input type=email name=email placeholder=email" +
+    "></div><div class=form-group><input type=email name=email placeholder=email" +
     marko_attr("value", data.email) +
-    "><select name=curso value><option value" +
+    "></div><div class=form-group><select name=curso value><option value" +
     marko_attr("selected", data.curso == "") +
     " disabled></option><option value=ads" +
     marko_attr("selected", data.curso == "ads") +
@@ -27,11 +27,11 @@ function render(input, out, __component, component, state) {
     marko_attr("selected", data.curso == "ipi") +
     ">Tec. em Informática para Internet</option><option value=qualidade" +
     marko_attr("selected", data.curso == "qualidade") +
-    ">Tec. em Gestão de Qualidade</option></select><button type=reset>Cancelar</button><button type=submit>Salvar</button></form>");
+    ">Tec. em Gestão de Qualidade</option></select></div><button class=\"btn btn-danger\" type=reset>Cancelar</button><button class=\"btn btn-success\" type=submit>Salvar</button></form></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "20");
+  await_reorderer_tag({}, out, __component, "26");
 
   _preferred_script_location_tag({}, out);
 

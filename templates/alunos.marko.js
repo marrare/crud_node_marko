@@ -16,7 +16,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title></head><body><h1>Alunos</h1><a href=/form>Novo</a><table><thead><th>Id</th><th>Nome</th><th>Curso</th><th>Opções</th></thead><tbody>");
+  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css integrity=sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm crossorigin=anonymous><script src=https://code.jquery.com/jquery-3.2.1.slim.min.js integrity=sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js integrity=sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl crossorigin=anonymous></script></head><body><div class=container><h1>Alunos</h1><a class=\"btn btn-primary\" href=/form>Novo</a><table class=table><thead class=thead-dark><th>Id</th><th>Nome</th><th>Curso</th><th>Opções</th></thead><tbody>");
 
   var $for$0 = 0;
 
@@ -29,18 +29,18 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(aluno.nome) +
       "</td><td>" +
       marko_escapeXml(aluno.curso) +
-      "</td><td><a" +
+      "</td><td><a class=\"btn btn-secondary\"" +
       marko_attr("href", "/form/" + (aluno.id == null ? "" : aluno.id)) +
-      ">EDITAR</a> | <a" +
+      ">EDITAR</a> | <a class=\"btn btn-danger\"" +
       marko_attr("href", "/alunos/delete/" + (aluno.id == null ? "" : aluno.id)) +
       ">DELETAR</a></td></tr>");
   });
 
-  out.w("</tbody></table>");
+  out.w("</tbody></table></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "23");
+  await_reorderer_tag({}, out, __component, "25");
 
   _preferred_script_location_tag({}, out);
 
