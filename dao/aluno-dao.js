@@ -2,9 +2,9 @@ class AlunoDao {
 
     constructor() {
         this._alunos = [
-            { id: 1, nome: 'Josino', curso: 'ADS' },
-            { id: 2, nome: 'Maria', curso: 'Gestão de Qualidade' },
-            { id: 3, nome: 'José', curso: 'ADS' }
+            { id: 1, nome: 'Josino', email: "josino@gmail.com", curso: 'ads' },
+            { id: 2, nome: 'Maria', email: "maria@gmail.com", curso: 'qualidade' },
+            { id: 3, nome: 'José', email: "jose@gmail.com", curso: 'ads' }
         ];
     }
 
@@ -13,6 +13,12 @@ class AlunoDao {
     }
 
     save(aluno) {
+        aluno.id = this._alunos.length+1;
+        this._alunos.push(aluno);
+    }
+
+    update(aluno) {
+        this.delete(aluno.id)
         this._alunos.push(aluno);
     }
 

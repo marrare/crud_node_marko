@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Alunos</h1>
-    <button>Novo </button>
+    <a href="/form">Novo</a>
     <table>
         <thead>
             <th>Id</th>
@@ -23,7 +23,7 @@
                     <td>${aluno.nome}</td>
                     <td>${aluno.curso}</td>
                     <td>
-                        <a href="#">EDITAR</a>
+                        <a href="/form/${aluno.id}">EDITAR</a>
                          | 
                         <a href="/alunos/delete/${aluno.id}">DELETAR</a>
                     </td>

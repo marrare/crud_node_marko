@@ -16,7 +16,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title></head><body><h1>Alunos</h1><button>Novo </button><table><thead><th>Id</th><th>Nome</th><th>Curso</th><th>Opções</th></thead><tbody>");
+  out.w("<!DOCTYPE html><html lang=pt-br><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content=IE=edge><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><title>Cadastro</title></head><body><h1>Alunos</h1><a href=/form>Novo</a><table><thead><th>Id</th><th>Nome</th><th>Curso</th><th>Opções</th></thead><tbody>");
 
   var $for$0 = 0;
 
@@ -29,7 +29,9 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(aluno.nome) +
       "</td><td>" +
       marko_escapeXml(aluno.curso) +
-      "</td><td><a href=#>EDITAR</a> | <a" +
+      "</td><td><a" +
+      marko_attr("href", "/form/" + (aluno.id == null ? "" : aluno.id)) +
+      ">EDITAR</a> | <a" +
       marko_attr("href", "/alunos/delete/" + (aluno.id == null ? "" : aluno.id)) +
       ">DELETAR</a></td></tr>");
   });
