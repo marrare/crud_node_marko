@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
         results: []
     }
 
-    alunoDAO.list().then((alunos) => {
-        response.results = alunos;
+    alunoDAO.list().then((result) => {
+        response.results = result;
         res.marko(require('./templates/alunos.marko'), response);
     }).catch(err => {
         console.log(err);
@@ -44,23 +44,54 @@ app.get('/form', (req, res) => {
 })
 
 app.get('/form/:id', (req, res) => {
-    const aluno = alunoDAO.findById(req.params.id);
-    res.marko(require('./templates/form.marko'), aluno);
+    const id = req.params.id;
+    alunoDAO.findById(id).then((result) => {
+        if(result.length > 0) {
+            res.marko(require('./templates/form.marko'), result[0]);
+        } else {
+            req.flash("error",`Não foi encontrado aluno com id = ${id}`);
+            res.redirect("/");
+        }
+    }).catch(err => {
+        console.log(err);
+        req.flash("error","Não é possível editar usuário");
+        res.redirect("/");
+    })
+    
 })
 
 app.get('/alunos/delete/:id', (req, res) => {
-    alunoDAO.delete(req.params.id);
-    res.redirect("/");
+    alunoDAO.delete(req.params.id).then((result) => {
+        req.flash("success","Aluno deletado com sucesso.");
+        res.redirect("/");
+    }).catch( err => {
+        console.log(err);
+        req.flash("error","Erro ao tentar deletar os dados do aluno.");
+        res.redirect("/");
+    })
 });
 
 app.post('/alunos', (req,res) => {
     const aluno = req.body;
-    if(aluno.id) alunoDAO.update(aluno);
-    else alunoDAO.save(aluno);
-
-    req.flash('success', 'Aluno salvo com sucesso');
-    
-    res.redirect("/");
+    if(aluno.id) {
+        alunoDAO.update(aluno).then((result) => {
+            req.flash("success","Atualização feita com sucesso.");
+            res.redirect("/");
+        }).catch( err => {
+            console.log(err);
+            req.flash("error","Erro ao tentar atualizar os dados do aluno.");
+            res.redirect("/");
+        })
+    } else {
+        alunoDAO.save(aluno).then((result) => {
+            req.flash("success","Aluno salvo com sucesso.");
+            res.redirect("/");
+        }).catch(err => {
+            console.log(err);
+            req.flash("error","Erro ao tentar salvar os dados do aluno.");
+            res.redirect("/");
+        })
+    }
 })
 
 app.listen(3000, '0.0.0.0',() => {
