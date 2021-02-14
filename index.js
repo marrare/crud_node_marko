@@ -3,7 +3,7 @@ let markoExpress = require("marko/express");
 const express = require('express');
 
 const AlunoDao = require('./dao/aluno-dao');
-const dao = new AlunoDao();
+const alunoDAO = new AlunoDao();
 
 const bodyParser = require('body-parser');
 
@@ -12,7 +12,13 @@ app.use(markoExpress());
 app.use(bodyParser.urlencoded());
 
 app.get('/', (req, res) => {
-    res.marko(require('./templates/alunos.marko'), dao.list());
+    alunoDAO.list().then((alunos) => {
+        res.marko(require('./templates/alunos.marko'), alunos);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json("Internal Error")
+    })
+    
 })
 
 app.get('/form', (req, res) => {
@@ -20,19 +26,19 @@ app.get('/form', (req, res) => {
 })
 
 app.get('/form/:id', (req, res) => {
-    const aluno = dao.findById(req.params.id);
+    const aluno = alunoDAO.findById(req.params.id);
     res.marko(require('./templates/form.marko'), aluno);
 })
 
 app.get('/alunos/delete/:id', (req, res) => {
-    dao.delete(req.params.id);
+    alunoDAO.delete(req.params.id);
     res.redirect("/");
 });
 
 app.post('/alunos', (req,res) => {
     const aluno = req.body;
-    if(aluno.id) dao.update(aluno);
-    else dao.save(aluno);
+    if(aluno.id) alunoDAO.update(aluno);
+    else alunoDAO.save(aluno);
     
     res.redirect("/");
 })
