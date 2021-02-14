@@ -4,28 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Alunos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
-        <h1>Alunos</h1>
-        <a class="btn btn-primary" href="/form">Novo</a>
-        <table class="table">
-            <thead class="thead-dark">
+        <div class="row">
+            <h1>
+                Alunos
+                <a class="btn-floating btn-large waves-effect waves-light red" href="/form"><i class="material-icons">add</i></a>
+            </h1>
+        </div>
+        <table>
+            <thead>
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Curso</th>
                 <th>Opções</th>
             </thead>
             <tbody>
-                <for|aluno, index| of=data>
+                <for|aluno, index| of=data.results>
                     <tr>
                         <td>${aluno.id}</td>
                         <td>${aluno.nome}</td>
                         <td>${aluno.curso}</td>
                         <td>
-                            <a class="btn btn-secondary" href="/form/${aluno.id}">EDITAR</a>
-                            <a class="btn btn-danger" href="/alunos/delete/${aluno.id}">DELETAR</a>
+                            <a style="margin-right: 10pt;" class="btn-floating btn-small waves-effect waves-light red" href="/form/${aluno.id}"><i class="material-icons">edit</i></a>
+                            <a class="btn-floating btn-small waves-effect waves-light red" href="/alunos/delete/${aluno.id}"><i class="material-icons">delete</i></a>
                         </td>
                     </tr>
                 </for>
@@ -33,5 +40,17 @@
         </table>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <for|message , index| of=data.error_messages>
+        <script>
+            M.toast({html: '${message}', classes: 'red lighten-2'})
+        </script>
+    </for>
+    <for|message , index| of=data.success_messages>
+        <script>
+            M.toast({html: '${message}', classes: 'teal accent-4'})
+        </script>
+    </for>
 </body>
 </html>
