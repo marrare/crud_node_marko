@@ -2,16 +2,14 @@ require('marko/node-require');
 let markoExpress = require("marko/express");
 const express = require('express');
 
+const AlunoDao = require('./dao/aluno-dao');
+const dao = new AlunoDao();
+
 const app = express();
 app.use(markoExpress());
 
 app.get('/', (req, res) => {
-    var alunos = [
-        { id: 1, nome: 'Josino', curso: 'ADS' },
-        { id: 1, nome: 'Josino', curso: 'ADS' },
-        { id: 1, nome: 'Josino', curso: 'ADS' }
-    ]
-    res.marko(require('./templates/alunos.marko'), alunos);
+    res.marko(require('./templates/alunos.marko'), dao.list());
 })
 
 app.get('/form', (req, res) => {
