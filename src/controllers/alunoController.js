@@ -1,8 +1,5 @@
 module.exports = (app) => {
 
-    const connection = app.config.dbConnection();
-    const AlunoDAO = new app.src.models.AlunoDAO(connection);
-
     const AlunoController = {
         listarAlunoPagina: (req, res) => {
             let response = {
