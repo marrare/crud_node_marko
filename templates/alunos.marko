@@ -14,7 +14,7 @@
         <div class="row">
             <h1>
                 Alunos
-                <a class="btn-floating btn-large waves-effect waves-light red" href="/form"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="/aluno"><i class="material-icons">add</i></a>
             </h1>
         </div>
         <table>
@@ -31,8 +31,8 @@
                         <td>${aluno.nome}</td>
                         <td>${aluno.curso}</td>
                         <td>
-                            <a style="margin-right: 10pt;" class="btn-floating btn-small waves-effect waves-light red" href="/form/${aluno.id}"><i class="material-icons">edit</i></a>
-                            <a class="btn-floating btn-small waves-effect waves-light red" href="/alunos/delete/${aluno.id}"><i class="material-icons">delete</i></a>
+                            <a style="margin-right: 10pt;" class="btn-floating btn-small waves-effect waves-light red" href="/aluno/${aluno.id}"><i class="material-icons">edit</i></a>
+                            <a class="btn-floating btn-small waves-effect waves-light red"  data-method="delete" href="/aluno/delete/${aluno.id}"><i class="material-icons">delete</i></a>
                         </td>
                     </tr>
                 </for>

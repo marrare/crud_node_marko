@@ -1,15 +1,8 @@
-const mysql = require('mysql2');
 
-class AlunoDao {
+class AlunoDAO {
 
-    constructor() {
-
-        this._connection = mysql.createConnection({
-            host: 'localhost',
-            user: 'rivaldo',
-            database: 'crud_node',
-            password: 'MKO)nji9'
-        })
+    constructor(connection) {
+        this._connection = connection;
     }
 
     list() {
@@ -63,4 +56,6 @@ class AlunoDao {
     }
 }
 
-module.exports = AlunoDao
+module.exports = () => {
+    return AlunoDAO;
+}
